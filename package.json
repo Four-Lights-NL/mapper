@@ -1,7 +1,7 @@
 {
 	"name": "@fourlights/mapper",
-	"version": "0.0.0",
-	"description": "",
+	"version": "1.0.0",
+	"description": "A simple data mapper written in typescript",
 	"packageManager": "npm@10.5.0",
 	"type": "module",
 	"main": "./dist/index.cjs",
