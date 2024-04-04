@@ -1,7 +1,7 @@
 name: 'Prepare'
 description: 'Prepares the node environment and installs npm packages'
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Setup Node
       uses: actions/setup-node@v4
