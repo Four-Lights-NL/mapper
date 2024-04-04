@@ -11,15 +11,18 @@ export type MapperProperty<T> = {
 	options?: MapperPropertyOptions
 }
 export type MapperConfig<T> = {
-	[key: string]: MapperProperty<T>
+	[key: string]: MapperProperty<T> | MapperFn<T>
 }
 
 const map = <T>(data: T, config: MapperConfig<T>) => {
 	const mapped: Record<keyof typeof config, any> = {}
 
 	for (const key in config) {
-		const property = config[key]
+		const property = (
+			typeof config[key] === 'function' ? { value: config[key] } : config[key]
+		) as MapperProperty<T>
 		if (!property) continue
+
 		const value = property.value(data)
 
 		if (property.options?.initialValue) {

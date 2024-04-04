@@ -1,18 +1,13 @@
 import createRandomUser from './utils/createRandomUser'
 import mapper, { MapperConfig } from '@fourlights/mapper'
-import type { User } from './user'
 import calculateAge from './utils/calculateAge'
 
 // User
 const user = createRandomUser()
-const userMapConfig: MapperConfig<User> = {
-	name: {
-		value: (data: User) => `${data.firstName} ${data.lastName}`,
-	},
-	birthday: { value: (data) => data.birthday },
-	age: {
-		value: (data) => calculateAge(data.birthday),
-	},
+const userMapConfig: MapperConfig<typeof user> = {
+	name: (data) => `${data.firstName} ${data.lastName}`,
+	birthday: (data) => data.birthday,
+	age: (data) => calculateAge(data.birthday),
 }
 console.log(mapper.map(user, userMapConfig))
 
