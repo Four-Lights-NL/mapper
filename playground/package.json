@@ -8,7 +8,7 @@
 	},
 	"dependencies": {
 		"@fourlights/mapper": "file:../",
-    "@faker-js/faker": "^8.4.1",
+		"@faker-js/faker": "^8.4.1",
 		"date-fns": "^3.6.0"
 	},
 	"devDependencies": {
