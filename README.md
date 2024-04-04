@@ -26,15 +26,9 @@ import { differenceInYears } from 'date-fns' // just as an example
 const user = { firstName: 'John', lastName: 'Doe', birthday: new Date(1990, 1, 1) }
 
 const config: MapperConfig<typeof user> = {
-	name: {
-		value: (data) => `${data.firstName} ${data.lastName}`,
-	},
-	birthday: { value: (data) => data.birthday },
-	age: {
-		value: (data) => {
-			return differenceInYears(new Date(), data.birthday)
-		},
-	},
+	name: (data) => `${data.firstName} ${data.lastName}`,
+	birthday: (data) => data.birthday,
+	age: (data) => differenceInYears(new Date(), data.birthday),
 }
 
 console.log(mapper.map(user, config))
@@ -49,6 +43,11 @@ Which will output (depending on the current date):
 	"age": 33
 }
 ```
+
+The above example uses a shorthand syntax for mapping properties. The shorthand `key: (data) => data.key` is equivalent to `key: { value: (data) => data.key }`.
+The long-form is required when you want to use options or when you want to map nested objects or arrays.
+
+## Advanced usage
 
 More advanced configurations allow for manipulating nested arrays and objects:
 

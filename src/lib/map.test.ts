@@ -8,9 +8,9 @@ describe('map', () => {
 
 		const config: MapperConfig<typeof input> = {
 			stringA: { value: (data) => `${data.a}` },
-			b: { value: (data) => data.b },
-			sumAB: { value: (data) => data.a + data.b },
-			c: { value: (data) => data.c },
+			b: (data) => data.b,
+			sumAB: (data) => data.a + data.b,
+			c: (data) => data.c,
 			c_squared: {
 				value: (data) => data.c,
 				row: (row: number) => row * row,
