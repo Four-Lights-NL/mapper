@@ -19,6 +19,7 @@
 		"README.md"
 	],
 	"scripts": {
+		"release": "release-it",
 		"build": "tsup",
 		"lint": "oxlint",
 		"lint:fix": "oxlint --fix",
