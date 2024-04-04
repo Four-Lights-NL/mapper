@@ -1,0 +1,17 @@
+{
+	"name": "playground",
+	"description": "Playground for @fourlights/mapper",
+	"main": "dist/index.js",
+	"scripts": {
+		"start": "tsc && node dist/index.js",
+		"build": "tsc"
+	},
+	"dependencies": {
+		"@fourlights/mapper": "file:../",
+    "@faker-js/faker": "^8.4.1",
+		"date-fns": "^3.6.0"
+	},
+	"devDependencies": {
+		"typescript": "^5.4.3"
+	}
+}
