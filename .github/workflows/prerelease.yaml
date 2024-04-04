@@ -1,4 +1,4 @@
-name: Release
+name: Pre-Release
 on:
   workflow_dispatch:
     inputs:
@@ -11,6 +11,14 @@ on:
           - patch
           - minor
           - major
+      prerelease_type:
+        description: 'Prerelease'
+        required: true
+        default: 'beta'
+        type: choice
+        options:
+          - beta
+          - rc
 
 permissions: write-all
 
@@ -39,7 +47,7 @@ jobs:
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
       - name: Run release
-        run: npm run release --ci -i ${{ github.event.inputs.bump_type }}
+        run: npm run release --ci -i ${{ github.event.inputs.bump_type }} --preRelease ${{ github.event.inputs.prerelease_type }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
