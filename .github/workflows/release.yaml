@@ -27,7 +27,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Prepare
         uses: ./.github/actions/prepare
