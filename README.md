@@ -74,7 +74,7 @@ Which will output:
 }
 ```
 
-Both the `row` and `options.keys` functions receive the following arguments on each iteration:
+Both the [`row` and `options.keys`](https://github.com/Four-Lights-NL/mapper/blob/main/src/lib/map.ts#L3) functions receive the following arguments on each iteration:
 
 - `rowValue`: the value of the current row (e.g. `cool`)
 - `parentKey`: the key of the parent holding the iterable value (e.g. `tags`)
@@ -82,7 +82,7 @@ Both the `row` and `options.keys` functions receive the following arguments on e
 
 ### Options
 
-The `options` object can contain the following properties:
+The `[options](https://github.com/Four-Lights-NL/mapper/blob/main/src/lib/map.ts#L4)` object can contain the following properties:
 
 - `keys`: an optional function that will be called for each key in the object or array. The function should return the key that will be used in the output object. If this function is not provided, the original key will be used.
 - `initialValue`: an optional function that sets an explicit initial value for the property.
@@ -91,8 +91,8 @@ The `options` object can contain the following properties:
 
 Two functions for manipulating keys are provided out of the box:
 
-- `mapper.Flatten`: flattens the keys of the object or array. This is useful when you want to flatten nested objects or arrays. Uses an underscore as a separator.
-- `mapper.Objectivy`: converts the iterable to an object.
+- `[mapper.Flatten](https://github.com/Four-Lights-NL/mapper/blob/main/src/lib/functions.ts#L2)`: flattens the keys of the object or array. This is useful when you want to flatten nested objects or arrays. Uses an underscore as a separator.
+- `[mapper.Objectify](https://github.com/Four-Lights-NL/mapper/blob/main/src/lib/functions.ts#L7)`: converts the iterable to an object.
 
 ## Examples
 
