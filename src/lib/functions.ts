@@ -1,9 +1,11 @@
-import type { MapperFn } from './map'
+import type { MapperFn } from './types'
+
 const Flatten: MapperFn<any> = <T>(
 	data: T,
 	key?: string,
 	rowId?: string | number | undefined,
 ): string => `${key}_${rowId}`
+
 const Objectify: MapperFn<any> = <T>(
 	data: T,
 	key?: string,

@@ -1,8 +1,9 @@
-import type { MapperConfig } from './map'
 import map from './map'
 import { Flatten, Objectify } from './functions'
+import type { MapperConfig } from './types'
+import { name as packageName } from '../../package.json'
 
-describe('map', () => {
+describe(packageName, () => {
 	it('should map data', () => {
 		const input = { a: 10, b: 20, c: [2, 3, 4], d: { e: 2, f: 3, g: 4 } }
 

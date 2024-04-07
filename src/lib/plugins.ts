@@ -1,4 +1,4 @@
-import type { MapperConfig, MapperOptions } from './map'
+import type { MapperConfig, MapperOptions } from './types'
 
 export type PluginOptions<Plugins extends keyof typeof PluginOptionsMap = never> =
 	(typeof PluginOptionsMap)[Plugins]
