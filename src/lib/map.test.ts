@@ -1,7 +1,7 @@
 import map from './map'
 import { Flatten, Objectify } from './functions'
 import type { MapperConfig } from './types'
-import { name as packageName } from '../../package.json'
+import { name as packageName } from '#package.json'
 
 describe(packageName, () => {
 	it('should map data', () => {
