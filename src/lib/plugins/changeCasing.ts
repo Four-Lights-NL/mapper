@@ -25,10 +25,11 @@ class ChangeCasingPlugin implements MapperPlugin {
 
 			if (newCasing !== 'keep') {
 				const originalValueFn = typeof property === 'function' ? property : property.value
-				const casedValueFn = (data: T) =>
-					newCasing === 'upper'
-						? originalValueFn(data).toUpperCase()
-						: originalValueFn(data).toLowerCase()
+				const casedValueFn = (data: T) => {
+					const value = originalValueFn(data)
+					if (typeof value !== 'string') return value
+					return newCasing === 'upper' ? value.toUpperCase() : value.toLowerCase()
+				}
 				config[key] =
 					typeof property === 'object' ? { ...property, value: casedValueFn } : casedValueFn
 			}
