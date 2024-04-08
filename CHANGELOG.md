@@ -1,5 +1,13 @@
 
 
+## [1.1.1](https://github.com/Four-Lights-NL/mapper/compare/v1.1.0...v1.1.1) (2024-04-08)
+
+
+### Bug Fixes
+
+* **plugins:** add `MapperOptions` type to export ([1cb93da](https://github.com/Four-Lights-NL/mapper/commit/1cb93dadaaf970dcdc467033caba23c75b892a77))
+* **plugins:** add `MapperPlugin` type to main exports ([d4da280](https://github.com/Four-Lights-NL/mapper/commit/d4da2809fa4c1eac4beb8311b5c87d33b93a49a5))
+
 ## [1.1.0](https://github.com/Four-Lights-NL/mapper/compare/v1.0.3...v1.1.0) (2024-04-08)
 
 
