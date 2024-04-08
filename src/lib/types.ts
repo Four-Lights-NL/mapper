@@ -1,18 +1,18 @@
-import type { Plugin, PluginOptions, PluginOptionsMap } from './plugins'
+import type { MapperPlugin } from './plugins'
 
 export type MapperFn<T> = (data: T, key?: string, rowId?: string | number) => any
 export type MapperPropertyOptions = {
 	keys?: MapperFn<any>
 	initialValue?: MapperFn<any>
 }
-export type MapperProperty<T, Plugins extends keyof typeof PluginOptionsMap = never> = {
+export type MapperProperty<T> = {
 	value: MapperFn<T>
 	row?: MapperFn<any>
-	options?: MapperPropertyOptions & PluginOptions<Plugins>
+	options?: MapperPropertyOptions
 }
-export type MapperConfig<T, Plugins extends keyof typeof PluginOptionsMap = never> = {
-	[key: string]: MapperProperty<T, Plugins> | MapperFn<T>
+export type MapperConfig<T> = {
+	[key: string]: MapperProperty<T> | MapperFn<T>
 }
 export type MapperOptions = {
-	plugins?: Plugin[]
+	plugins?: MapperPlugin[]
 }

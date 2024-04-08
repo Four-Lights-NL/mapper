@@ -1,12 +1,7 @@
 import set from 'set-value'
-import type { PluginOptionsMap } from './plugins'
 import type { MapperConfig, MapperOptions, MapperProperty } from './types'
 
-const map = <T, Plugins extends keyof typeof PluginOptionsMap = never>(
-	data: T,
-	config: MapperConfig<T, Plugins>,
-	options?: MapperOptions,
-) => {
+const map = <T>(data: T, config: MapperConfig<T>, options?: MapperOptions) => {
 	const mapped: Record<keyof typeof config, any> = {}
 
 	if (options?.plugins) {
@@ -18,7 +13,7 @@ const map = <T, Plugins extends keyof typeof PluginOptionsMap = never>(
 	for (const key in config) {
 		const property = (
 			typeof config[key] === 'function' ? { value: config[key] } : config[key]
-		) as MapperProperty<T, Plugins>
+		) as MapperProperty<T>
 		if (!property) continue
 
 		const value = property.value(data)
