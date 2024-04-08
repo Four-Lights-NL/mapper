@@ -3,12 +3,12 @@ import defu from 'defu'
 import { MapperConfig, MapperOptions } from '../types'
 
 export type ChangeCasingPluginOptions = {
-	casing?: 'lower' | 'upper'
+	casing: 'lower' | 'upper' | 'keep'
 }
 export type ChangeCasingPluginPropertyOptions = ChangeCasingPluginOptions // same options as the plugin itself, but per-property
 
 class ChangeCasingPlugin implements MapperPlugin {
-	private readonly _options: ChangeCasingPluginOptions = {}
+	private readonly _options: ChangeCasingPluginOptions = { casing: 'keep' }
 
 	constructor(options?: ChangeCasingPluginOptions) {
 		this._options = defu(options, this._options)
@@ -23,7 +23,7 @@ class ChangeCasingPlugin implements MapperPlugin {
 					? (property.options as ChangeCasingPluginPropertyOptions)?.casing || this._options?.casing
 					: this._options?.casing
 
-			if (newCasing) {
+			if (newCasing !== 'keep') {
 				const originalValueFn = typeof property === 'function' ? property : property.value
 				const casedValueFn = (data: T) =>
 					newCasing === 'upper'

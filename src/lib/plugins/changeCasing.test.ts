@@ -7,17 +7,14 @@ import ChangeCasingPlugin from './changeCasing'
 describe(packageName, () => {
 	describe('Plugins', () => {
 		it('should use the `ChangeCasingPlugin` when enabled', () => {
-			const input = { a: 'hello', b: 'plugin-able', c: 'world' }
-			const expected = { a: 'HELLO', b: 'PLUGIN-ABLE', c: 'WORLD' }
+			const input = { a: 'hello', b: 'world!' }
+			const expected = { a: 'HELLO', b: 'WORLD!' }
 
 			const config = {
 				a: {
 					value: (data) => data.a,
 				},
 				b: (data) => data.b,
-				c: {
-					value: (data) => data.c,
-				},
 			} as MapperConfig<typeof input>
 
 			expect(
@@ -26,18 +23,21 @@ describe(packageName, () => {
 		})
 
 		it('should use the `ChangeCasingPlugin` on configured properties', () => {
-			const input = { a: 'hello', b: 'plugin-able', c: 'world' }
-			const expected = { a: 'HELLO', b: 'plugin-able', c: 'WORLD' }
+			const input = { a: 'hello', b: 'PLUGable', c: 'world!' }
+			const expected = { a: 'HELLO', b: 'PLUGable', c: 'WORLD!' }
 
 			const config = {
 				a: {
 					value: (data) => data.a,
-					options: { upperCase: true } as ChangeCasingPluginPropertyOptions,
+					options: { casing: 'upper' } as ChangeCasingPluginPropertyOptions,
 				},
-				b: (data) => data.b,
+				b: {
+					value: (data) => data.b,
+					options: { casing: 'keep' } as ChangeCasingPluginPropertyOptions,
+				},
 				c: {
 					value: (data) => data.c,
-					options: { upperCase: true } as ChangeCasingPluginPropertyOptions,
+					options: { casing: 'upper' } as ChangeCasingPluginPropertyOptions,
 				},
 			} as MapperConfig<typeof input>
 
