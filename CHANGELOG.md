@@ -1,5 +1,17 @@
 
 
+## [1.1.0](https://github.com/Four-Lights-NL/mapper/compare/v1.0.3...v1.1.0) (2024-04-08)
+
+
+### Features
+
+* **plugins:** allow extending configuration using plugins ([6b97c9b](https://github.com/Four-Lights-NL/mapper/commit/6b97c9be72c27147712b97997e2c9dd051a17a84))
+
+
+### Bug Fixes
+
+* **plugins:** `ChangeCasingPlugin` should only touch strings ([ebe56d6](https://github.com/Four-Lights-NL/mapper/commit/ebe56d6b7540200da5e5b7b15f42d03713ac4165))
+
 ## [1.0.3](https://github.com/Four-Lights-NL/mapper/compare/v1.0.2...v1.0.3) (2024-04-07)
 
 ## [1.0.2](https://github.com/Four-Lights-NL/mapper/compare/v1.0.1...v1.0.2) (2024-04-04)
