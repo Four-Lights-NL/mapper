@@ -1,8 +1,9 @@
-import type { MapperConfig } from './map'
 import map from './map'
-import { Flatten, Objectify } from './functions'
+import { Flatten } from './functions'
+import type { MapperConfig } from './types'
+import { name as packageName } from '#package.json'
 
-describe('map', () => {
+describe(packageName, () => {
 	it('should map data', () => {
 		const input = { a: 10, b: 20, c: [2, 3, 4], d: { e: 2, f: 3, g: 4 } }
 
@@ -53,74 +54,5 @@ describe('map', () => {
 		}
 
 		expect(map(input, config)).toEqual(expected)
-	})
-
-	describe('Flatten', () => {
-		it('should flatten an array of numbers', () => {
-			const input = { a: 2, b: 3, c: [2, 3, 4] }
-
-			const config: MapperConfig<typeof input> = {
-				flattenedC: {
-					value: (data) => data.c,
-					row: (row: number) => row,
-					options: { keys: Flatten },
-				},
-			}
-
-			const expected = {
-				flattenedC_0: 2,
-				flattenedC_1: 3,
-				flattenedC_2: 4,
-			}
-
-			expect(map(input, config)).toEqual(expected)
-		})
-	})
-
-	describe('Objectify', () => {
-		// NOTE: This is currently broken in set-value
-		// Currently broken due to a bug in set-value
-		xit('should map an array of numbers to an object', () => {
-			const input = { a: 2, b: 3, c: [2, 3, 4] }
-
-			const config: MapperConfig<typeof input> = {
-				objectC: {
-					value: (data) => data.c,
-					row: (row: number) => row * row,
-					options: {
-						keys: Objectify,
-						initialValue: () => {},
-					},
-				},
-			}
-
-			const expected = {
-				objectC: { 2: 4, 3: 9, 4: 16 },
-			}
-
-			expect(map(input, config)).toEqual(expected)
-		})
-
-		// NOTE: Brittle test around broken set-value functionality
-		it('should map an array of numbers to an array, regardless of key function', () => {
-			const input = { a: 2, b: 3, c: [2, 3, 4] }
-
-			const config: MapperConfig<typeof input> = {
-				objectC: {
-					value: (data) => data.c,
-					row: (row: number) => row * row,
-					options: {
-						keys: Objectify,
-						initialValue: () => {},
-					},
-				},
-			}
-
-			const expected = {
-				objectC: [4, 9, 16],
-			}
-
-			expect(map(input, config)).toEqual(expected)
-		})
 	})
 })

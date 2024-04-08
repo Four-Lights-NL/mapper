@@ -1,21 +1,14 @@
 import set from 'set-value'
+import type { MapperConfig, MapperOptions, MapperProperty } from './types'
 
-export type MapperFn<T> = (data: T, key?: string, rowId?: string | number) => any
-export type MapperPropertyOptions = {
-	keys?: MapperFn<any>
-	initialValue?: MapperFn<any>
-}
-export type MapperProperty<T> = {
-	value: MapperFn<T>
-	row?: MapperFn<any>
-	options?: MapperPropertyOptions
-}
-export type MapperConfig<T> = {
-	[key: string]: MapperProperty<T> | MapperFn<T>
-}
-
-const map = <T>(data: T, config: MapperConfig<T>) => {
+const map = <T>(data: T, config: MapperConfig<T>, options?: MapperOptions) => {
 	const mapped: Record<keyof typeof config, any> = {}
+
+	if (options?.plugins) {
+		options.plugins.forEach((plugin) => {
+			config = plugin.config(config, options)
+		})
+	}
 
 	for (const key in config) {
 		const property = (
