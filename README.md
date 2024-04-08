@@ -142,7 +142,7 @@ While the above is trivial, plugins can be used to implement more complex logic,
 
 #### List of available plugins:
 
-- [@fourlights/mapping-plugin-anonymize](https://github.com/Four-Lights-NL/mapper-plugin-anonymize): anonymize PII data during mapping
+- [@fourlights/mapper-plugin-anonymize](https://github.com/Four-Lights-NL/mapper-plugin-anonymize): anonymize PII data during mapping
 
 ## Other examples
 
