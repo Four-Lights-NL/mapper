@@ -5,13 +5,13 @@ export type MapperPropertyOptions = {
 	keys?: MapperFn<any>
 	initialValue?: MapperFn<any>
 }
-export type MapperProperty<T> = {
+export type MapperProperty<T, U = {}> = {
 	value: MapperFn<T>
 	row?: MapperFn<any>
-	options?: MapperPropertyOptions
+	options?: MapperPropertyOptions & U
 }
-export type MapperConfig<T> = {
-	[key: string]: MapperProperty<T> | MapperFn<T>
+export type MapperConfig<T, U = {}> = {
+	[key: string]: MapperProperty<T, U> | MapperFn<T>
 }
 export type MapperOptions = {
 	plugins?: MapperPlugin[]

@@ -103,6 +103,7 @@ Example usage:
 ```typescript
 import ChangeCasingPlugin from '@fourlights/mapper/plugins/changeCasing'
 import type { ChangeCasingPluginPropertyOptions } from '@fourlights/mapper/plugins/changeCasing'
+import { ChangeCasingPluginOptions } from './changeCasing'
 
 const user = { firstName: 'John', lastName: 'Doe', birthday: new Date(1990, 1, 1) }
 const config: MapperConfig<typeof user> = {
@@ -114,10 +115,10 @@ const config: MapperConfig<typeof user> = {
 console.log(mapper.map(user, config, { plugins: [new ChangeCasingPlugin({ casing: 'upper' })] }))
 
 // or alternatively you can set the plugin options per property
-const alternativeconfig = {
+const alternativeconfig: MapperConfig<typeof user, ChangeCasingPluginPropertyOptions> = {
 	name: {
 		value: (data) => `${data.firstName} ${data.lastName}`,
-		options: { casing: 'upper' } as ChangeCasingPluginPropertyOptions,
+		options: { casing: 'upper' },
 	},
 	birthday: (data) => data.birthday,
 	age: (data) => differenceInYears(new Date(), data.birthday),
