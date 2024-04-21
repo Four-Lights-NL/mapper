@@ -1,5 +1,12 @@
 
 
+## [1.2.0](https://github.com/Four-Lights-NL/mapper/compare/v1.1.2...v1.2.0) (2024-04-21)
+
+
+### Features
+
+* new mapper API + general cleanup ([9fc5204](https://github.com/Four-Lights-NL/mapper/commit/9fc52049d66373eb33bc87318c62b33dbfb7f124))
+
 ## [1.1.2](https://github.com/Four-Lights-NL/mapper/compare/v1.1.1...v1.1.2) (2024-04-09)
 
 ## [1.1.1](https://github.com/Four-Lights-NL/mapper/compare/v1.1.0...v1.1.1) (2024-04-08)
