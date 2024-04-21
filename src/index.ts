@@ -1,12 +1,12 @@
 import map from './lib/map'
-import { Flatten, Objectify } from './lib/functions'
+import { Flatten, Keep } from './lib/structure'
 
-export type { MapperPlugin } from './lib/plugins'
 export type {
 	MapperFn,
 	MapperProperty,
 	MapperConfig,
 	MapperOptions,
+	MapperPlugin,
 	MapperPropertyOptions,
 } from './lib/types'
-export { map, Objectify, Flatten }
+export { map, Keep, Flatten }
