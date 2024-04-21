@@ -1,6 +1,5 @@
-import type { MapperPlugin } from '../plugins'
 import defu from 'defu'
-import type { MapperConfig, MapperOptions } from '../types'
+import type { MapperConfig, MapperOptions, MapperPlugin } from '../types'
 
 export type ChangeCasingPluginOptions = {
 	casing: 'lower' | 'upper' | 'keep'

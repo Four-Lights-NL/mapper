@@ -1,5 +1,7 @@
 import set from 'set-value'
-import type { MapperConfig, MapperOptions, MapperProperty } from './types'
+import type { MapperConfig, MapperOptions } from './types'
+import wrapProperty from './utils/wrapProperty'
+import * as structure from './structure'
 
 const map = <T>(data: T, config: MapperConfig<T>, options?: MapperOptions) => {
 	const mapped: Record<keyof typeof config, any> = {}
@@ -11,39 +13,28 @@ const map = <T>(data: T, config: MapperConfig<T>, options?: MapperOptions) => {
 	}
 
 	for (const key in config) {
-		const property = (
-			typeof config[key] === 'function' ? { value: config[key] } : config[key]
-		) as MapperProperty<T>
+		const property = wrapProperty(config[key])
 		if (!property) continue
 
-		const value = property.value(data)
-
-		if (property.options?.initialValue) {
-			mapped[key] = property.options.initialValue
+		if (property.options?.init) {
+			mapped[key] = property.options.init(data, key)
 		}
 
-		const customKeys = property.options?.keys
-		if (customKeys) {
-			const props = typeof value === 'object' ? Object.keys(value) : value
-			for (let i = 0; i < props.length; i += 1) {
-				const rowId = typeof value === 'object' ? props[i] : i
-				const rowKey = customKeys(value[rowId], key, rowId)
-				const rowValue = property.row ? property.row(value[rowId], key, rowKey) : value[rowId]
-				set(mapped, rowKey, rowValue, { merge: true })
+		const value = property.value(data)
+		if (Array.isArray(value) || typeof value === 'object') {
+			const innerKeys = typeof value === 'object' ? Object.keys(value) : value
+			const structureFn = property.options?.structure ?? structure.Keep
+			for (let i = 0; i < innerKeys.length; i += 1) {
+				const innerKey = typeof value === 'object' ? innerKeys[i] : i
+				const innerValue = value[innerKey]
+
+				const targetKey = structureFn(innerValue, key, innerKey)
+				const mappedValue = property.apply ? property.apply(innerValue, key, targetKey) : innerValue
+
+				set(mapped, targetKey, mappedValue, { merge: true })
 			}
 		} else {
-			let mappedValue = value
-			if (property.row) {
-				const { row } = property
-
-				if (Array.isArray(value)) {
-					mappedValue = value.map((v, i) => row(v, key, i))
-				} else if (typeof value === 'object') {
-					const props = Object.entries(value)
-					mappedValue = Object.fromEntries(props.map(([k, v]) => [k, row(v, key, k)]))
-				}
-			}
-			set(mapped, key, mappedValue, { merge: true })
+			set(mapped, key, value)
 		}
 	}
 	return mapped

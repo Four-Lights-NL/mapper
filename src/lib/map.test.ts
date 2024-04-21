@@ -1,9 +1,8 @@
 import map from './map'
-import { Flatten } from './functions'
+import { Flatten } from './structure'
 import type { MapperConfig } from './types'
-import { name as packageName } from '#package.json'
 
-describe(packageName, () => {
+describe('Map', () => {
 	it('should map data', () => {
 		const input = { a: 10, b: 20, c: [2, 3, 4], d: { e: 2, f: 3, g: 4 } }
 
@@ -14,23 +13,23 @@ describe(packageName, () => {
 			c: (data) => data.c,
 			c_squared: {
 				value: (data) => data.c,
-				row: (row: number) => row * row,
+				apply: (row: number) => row * row,
 			},
 			flattenedC: {
 				value: (data) => data.c,
-				row: (row: number) => row,
-				options: { keys: Flatten },
+				apply: (row: number) => row,
+				options: { structure: Flatten },
 			},
 			totalC: { value: (data) => data.c.reduce((s, c) => s + c) },
-			d: { value: (data) => data.d, row: (row: number) => row, options: { keys: Flatten } },
+			d: { value: (data) => data.d, apply: (row: number) => row, options: { structure: Flatten } },
 			d_squared_flat: {
 				value: (data) => data.d,
-				row: (row: number) => row * row,
-				options: { keys: Flatten },
+				apply: (row: number) => row * row,
+				options: { structure: Flatten },
 			},
 			d_squared: {
 				value: (data) => data.d,
-				row: (row: number) => row * row,
+				apply: (row: number) => row * row,
 			},
 		}
 
