@@ -2,6 +2,7 @@ import set from 'set-value'
 import type { MapperConfig, MapperOptions } from './types'
 import { wrapProperty } from './utils/wrapProperty'
 import * as structure from './structure'
+import { isPlainObject } from './utils/isPlainObject'
 
 export function map<T>(data: T, config: MapperConfig<T>, options?: MapperOptions) {
 	const mapped: Record<keyof typeof config, any> = {}
@@ -21,7 +22,7 @@ export function map<T>(data: T, config: MapperConfig<T>, options?: MapperOptions
 		}
 
 		const value = property.value(data)
-		if (Array.isArray(value) || typeof value === 'object') {
+		if (Array.isArray(value) || isPlainObject(value)) {
 			const innerKeys = typeof value === 'object' ? Object.keys(value) : value
 			const structureFn = property.options?.structure ?? structure.Keep
 			for (let i = 0; i < innerKeys.length; i += 1) {
