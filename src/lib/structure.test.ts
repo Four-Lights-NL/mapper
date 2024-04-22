@@ -1,6 +1,6 @@
 import type { MapperConfig } from './types'
 import { Flatten, Keep } from './structure'
-import map from './map'
+import { map } from './map'
 
 describe('Keys', () => {
 	describe('Flatten', () => {

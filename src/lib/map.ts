@@ -1,9 +1,9 @@
 import set from 'set-value'
 import type { MapperConfig, MapperOptions } from './types'
-import wrapProperty from './utils/wrapProperty'
+import { wrapProperty } from './utils/wrapProperty'
 import * as structure from './structure'
 
-const map = <T>(data: T, config: MapperConfig<T>, options?: MapperOptions) => {
+export function map<T>(data: T, config: MapperConfig<T>, options?: MapperOptions) {
 	const mapped: Record<keyof typeof config, any> = {}
 
 	if (options?.plugins) {
@@ -39,5 +39,3 @@ const map = <T>(data: T, config: MapperConfig<T>, options?: MapperOptions) => {
 	}
 	return mapped
 }
-
-export default map

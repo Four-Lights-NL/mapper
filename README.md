@@ -44,12 +44,12 @@ And then define the mapper configuration for your data:
 ```typescript
 import { differenceInYears } from 'date-fns' // just as an example
 
-const user = { firstName: 'John', lastName: 'Doe', birthday: new Date(1990, 1, 1) }
+const user = { firstName: 'John', lastName: 'Doe', birthdate: new Date(1990, 1, 1) }
 
 const config: MapperConfig<typeof user> = {
 	name: (data) => `${data.firstName} ${data.lastName}`,
-	birthday: (data) => data.birthday,
-	age: (data) => differenceInYears(new Date(), data.birthday),
+	birthdate: (data) => data.birthdate,
+	age: (data) => differenceInYears(new Date(), data.birthdate),
 }
 
 console.log(mapper.map(user, config))
@@ -60,7 +60,7 @@ Which will output (depending on the current date):
 ```json
 {
 	"name": "John Doe",
-	"birthday": "1990-01-01T00:00:00.000Z",
+	"birthdate": "1990-01-01T00:00:00.000Z",
 	"age": 33
 }
 ```
@@ -126,15 +126,17 @@ The package also provides a plugin system that allows you to re-use mapper confi
 Example usage:
 
 ```typescript
-import ChangeCasingPlugin from '@fourlights/mapper/plugins/changeCasing'
-import type { ChangeCasingPluginPropertyOptions } from '@fourlights/mapper/plugins/changeCasing'
-import { ChangeCasingPluginOptions } from './changeCasing'
+import {
+	ChangeCasingPlugin,
+	type ChangeCasingPluginOptions,
+	type ChangeCasingPluginPropertyOptions,
+} from '@fourlights/mapper/plugins/changeCasing'
 
-const user = { firstName: 'John', lastName: 'Doe', birthday: new Date(1990, 1, 1) }
+const user = { firstName: 'John', lastName: 'Doe', birthdate: new Date(1990, 1, 1) }
 const config: MapperConfig<typeof user> = {
 	name: (data) => `${data.firstName} ${data.lastName}`,
-	birthday: (data) => data.birthday,
-	age: (data) => differenceInYears(new Date(), data.birthday),
+	birthdate: (data) => data.birthdate,
+	age: (data) => differenceInYears(new Date(), data.birthdate),
 }
 
 console.log(mapper.map(user, config, { plugins: [new ChangeCasingPlugin({ casing: 'upper' })] }))
@@ -145,8 +147,8 @@ const alternativeconfig: MapperConfig<typeof user, ChangeCasingPluginPropertyOpt
 		value: (data) => `${data.firstName} ${data.lastName}`,
 		options: { casing: 'upper' },
 	},
-	birthday: (data) => data.birthday,
-	age: (data) => differenceInYears(new Date(), data.birthday),
+	birthdate: (data) => data.birthdate,
+	age: (data) => differenceInYears(new Date(), data.birthdate),
 }
 
 console.log(mapper.map(user, alternativeconfig, { plugins: [new ChangeCasingPlugin()] }))
@@ -157,7 +159,7 @@ Which will output:
 ```json5
 {
 	name: 'JOHN DOE',
-	birthday: '1990-01-01T00:00:00.000Z',
+	birthdate: '1990-01-01T00:00:00.000Z',
 	age: 33,
 }
 ```

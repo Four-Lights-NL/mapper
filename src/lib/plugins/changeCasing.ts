@@ -6,7 +6,7 @@ export type ChangeCasingPluginOptions = {
 }
 export type ChangeCasingPluginPropertyOptions = ChangeCasingPluginOptions // same options as the plugin itself, but per-property
 
-class ChangeCasingPlugin implements MapperPlugin {
+export class ChangeCasingPlugin implements MapperPlugin {
 	private readonly _options: ChangeCasingPluginOptions = { casing: 'keep' }
 
 	constructor(options?: ChangeCasingPluginOptions) {
@@ -36,5 +36,3 @@ class ChangeCasingPlugin implements MapperPlugin {
 		return config
 	}
 }
-
-export default ChangeCasingPlugin
