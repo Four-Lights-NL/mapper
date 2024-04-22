@@ -1,7 +1,7 @@
 export interface User {
 	_id: string
 	avatar: string
-	birthday: Date
+	birthdate: Date
 	email: string
 	firstName: string
 	lastName: string

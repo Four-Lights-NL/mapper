@@ -9,7 +9,7 @@ export function createRandomUser(): User {
 	return {
 		_id: faker.string.uuid(),
 		avatar: faker.image.avatar(),
-		birthday: faker.date.birthdate(),
+		birthdate: faker.date.birthdate(),
 		email,
 		firstName,
 		lastName,
