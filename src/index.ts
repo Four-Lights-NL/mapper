@@ -1,5 +1,5 @@
-import map from './lib/map'
-import { Flatten, Keep } from './lib/structure'
+export { map } from './lib/map'
+export { Flatten, Keep } from './lib/structure'
 
 export type {
 	MapperFn,
@@ -9,4 +9,3 @@ export type {
 	MapperPlugin,
 	MapperPropertyOptions,
 } from './lib/types'
-export { map, Keep, Flatten }

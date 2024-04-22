@@ -1,6 +1,6 @@
-import createRandomUser from './utils/createRandomUser'
-import mapper, { MapperConfig } from '@fourlights/mapper'
-import calculateAge from './utils/calculateAge'
+import { createRandomUser } from './utils/createRandomUser'
+import mapper, { type MapperConfig } from '@fourlights/mapper'
+import { calculateAge } from './utils/calculateAge'
 
 // User
 const user = createRandomUser()
@@ -14,8 +14,12 @@ console.log(mapper.map(user, userMapConfig))
 // Page
 const page = { status: { private: true, archived: true }, tags: ['cool', 'example'] }
 const pageConfig: MapperConfig<typeof page> = {
-	tags: { value: (data) => data.tags, row: (r) => r.toUpperCase() },
-	is: { value: (data) => data.status, options: { keys: mapper.Flatten } },
-	is_not: { value: (data) => data.status, row: (r) => !r, options: { keys: mapper.Flatten } },
+	tags: { value: (data) => data.tags, apply: (r) => r.toUpperCase() },
+	is: { value: (data) => data.status, options: { structure: mapper.Flatten } },
+	is_not: {
+		value: (data) => data.status,
+		apply: (r) => !r,
+		options: { structure: mapper.Flatten },
+	},
 }
 console.log(mapper.map(page, pageConfig))

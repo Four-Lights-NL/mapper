@@ -1,4 +1,4 @@
-import map from './map'
+import { map } from './map'
 import { Flatten } from './structure'
 import type { MapperConfig } from './types'
 
