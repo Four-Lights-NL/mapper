@@ -1,5 +1,12 @@
 
 
+## [1.3.0](https://github.com/Four-Lights-NL/mapper/compare/v1.2.0...v1.3.0) (2024-04-22)
+
+
+### Bug Fixes
+
+* non-plain objects should not be destructured ([d83da07](https://github.com/Four-Lights-NL/mapper/commit/d83da07ba2984a624b18f399faada911e9ff23c4))
+
 ## [1.2.0](https://github.com/Four-Lights-NL/mapper/compare/v1.1.2...v1.2.0) (2024-04-21)
 
 
