@@ -54,4 +54,10 @@ describe('Map', () => {
 
 		expect(map(input, config)).toEqual(expected)
 	})
+
+	it('should map a date object', () => {
+		const input = { date: new Date(1, 1, 1) }
+		const config: MapperConfig<typeof input> = { date: (d) => d.date }
+		expect(map(input, config)).toStrictEqual({ date: new Date(1, 1, 1) })
+	})
 })
