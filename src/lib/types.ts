@@ -3,16 +3,19 @@ export type MapperPropertyOptions = {
 	structure?: MapperFn<any>
 	init?: MapperFn<any>
 }
-export type MapperProperty<T, U = {}> = {
-	value: MapperFn<T>
+export type MapperProperty<TData, TOptions extends {} = {}> = {
+	value: MapperFn<TData>
 	apply?: MapperFn<any>
-	options?: MapperPropertyOptions & U
+	options?: MapperPropertyOptions & TOptions
 }
-export type MapperConfig<T, U = {}> = {
-	[key: string | symbol]: MapperProperty<T, U> | MapperFn<T>
+export type MapperConfig<TData, TOptions extends {} = {}> = {
+	[key: string | symbol]: MapperProperty<TData, TOptions> | MapperFn<TData>
 }
 export type MapperPlugin = {
-	config: <T>(config: MapperConfig<T>, options?: MapperOptions) => MapperConfig<T>
+	config: <TData, TOptions extends {} = {}>(
+		config: MapperConfig<TData, TOptions>,
+		options?: MapperOptions,
+	) => MapperConfig<TData>
 }
 export type MapperOptions = {
 	plugins?: MapperPlugin[]
