@@ -174,7 +174,7 @@ While the above is trivial, plugins can be used to implement more complex logic,
 
 ## Other examples
 
-For more examples, please refer to the [tests](./src/lib/map.test.ts) and the [playground](./playground/src/index.ts).
+For more examples, please refer to the [tests](tests/unit/map.test.ts) and the [playground](./playground/src/index.ts).
 
 ## Contributing
 

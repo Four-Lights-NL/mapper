@@ -1,6 +1,6 @@
-import type { MapperConfig } from './types'
-import { Flatten, Keep } from './structure'
-import { map } from './map'
+import type { MapperConfig } from '../../src/lib/types'
+import { Flatten, Keep } from '../../src/lib/structure'
+import { map } from '../../src/lib/map'
 
 describe('Keys', () => {
 	describe('Flatten', () => {

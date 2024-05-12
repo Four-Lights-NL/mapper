@@ -1,6 +1,6 @@
-import { map } from './map'
-import { Flatten } from './structure'
-import type { MapperConfig } from './types'
+import { map } from '../../src/lib/map'
+import { Flatten } from '../../src/lib/structure'
+import type { MapperConfig } from '../../src/lib/types'
 
 describe('Map', () => {
 	it('should map data', () => {

@@ -3,6 +3,7 @@
 	"description": "Playground for @fourlights/mapper",
 	"main": "dist/index.js",
 	"scripts": {
+		"prestart": "cd ../ && npm install > /dev/null && npm run build > /dev/null && cd -",
 		"start": "tsc && node dist/index.js",
 		"build": "tsc"
 	},
