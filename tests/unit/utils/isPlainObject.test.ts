@@ -1,4 +1,4 @@
-import { isPlainObject } from './isPlainObject'
+import { isPlainObject } from '../../../src/lib/utils/isPlainObject'
 
 describe('isPlainObject', () => {
 	it('should return true for plain objects', () => {

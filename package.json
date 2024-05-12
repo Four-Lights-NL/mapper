@@ -25,7 +25,9 @@
 		"lint:fix": "oxlint --fix",
 		"format": "prettier --check .",
 		"format:fix": "prettier --write .",
-		"test": "jest"
+		"test": "cd tests && npm run test",
+		"test:fast": "cd tests && npm run test:fast",
+		"packages:upgrade": "npx --yes npm-check-updates -u"
 	},
 	"author": "Four Lights <engineering@fourlights.nl> (https://github.com/Four-Lights-NL)",
 	"maintainers": [
@@ -52,6 +54,7 @@
 		"prettier": "^3.2.5",
 		"release-it": "^17.1.1",
 		"ts-jest": "^29.1.2",
+		"ts-node": "^10.9.2",
 		"tsup": "^8.0.2",
 		"typescript": "^5.4.3"
 	},

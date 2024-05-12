@@ -1,0 +1,22 @@
+{
+	"name": "tests",
+	"description": "Tests for @fourlights/mapper",
+	"scripts": {
+		"setup": "npm install > /dev/null && cd ../ && npm install > /dev/null && npm run build > /dev/null && cd -",
+		"pretest": "npm run setup",
+		"test": "jest",
+		"pretest:fast": "npm run setup",
+		"test:fast": "TEST_FAST=true jest"
+	},
+	"dependencies": {
+		"@faker-js/faker": "^8.4.1",
+		"@fourlights/mapper": "file:../",
+		"date-fns": "^3.6.0"
+	},
+	"devDependencies": {
+		"jest": "^29.7.0",
+		"ts-jest": "^29.1.2",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.4.5"
+	}
+}

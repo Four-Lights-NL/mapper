@@ -1,6 +1,9 @@
-import type { MapperConfig } from '../types'
-import { map } from '../map'
-import { ChangeCasingPlugin, type ChangeCasingPluginPropertyOptions } from './changeCasing'
+import type { MapperConfig } from '../../../src/lib/types'
+import { map } from '../../../src/lib/map'
+import {
+	ChangeCasingPlugin,
+	type ChangeCasingPluginPropertyOptions,
+} from '../../../src/lib/plugins/changeCasing'
 
 describe('Plugins', () => {
 	it('should use the `ChangeCasingPlugin` when enabled', () => {

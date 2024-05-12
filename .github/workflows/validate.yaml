@@ -50,7 +50,7 @@ jobs:
         uses: ./.github/actions/prepare
 
       - name: Tests
-        run: npm run test
+        run: npm run test:fast
 
   build:
     runs-on: ubuntu-latest
