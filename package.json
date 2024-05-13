@@ -19,16 +19,16 @@
 			"require": "./dist/lib/utils/index.cjs"
 		}
 	},
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/index.d.ts"
-      ],
-      "utils": [
-        "./dist/lib/utils/index.d.ts"
-      ]
-    }
-  },
+	"typesVersions": {
+		"*": {
+			"*": [
+				"./dist/index.d.ts"
+			],
+			"utils": [
+				"./dist/lib/utils/index.d.ts"
+			]
+		}
+	},
 	"files": [
 		"dist",
 		"README.md"
