@@ -1,5 +1,12 @@
 
 
+## [1.3.1](https://github.com/Four-Lights-NL/mapper/compare/v1.3.0...v1.3.1) (2024-05-13)
+
+
+### Features
+
+* export `utils` for usage in plugins ([df80cd2](https://github.com/Four-Lights-NL/mapper/commit/df80cd2590112401551d38579ace1761df420b4b))
+
 ## [1.3.0](https://github.com/Four-Lights-NL/mapper/compare/v1.2.0...v1.3.0) (2024-04-22)
 
 
