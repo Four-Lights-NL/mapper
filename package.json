@@ -53,6 +53,7 @@
 		"oxlint": "^0.2.15",
 		"prettier": "^3.2.5",
 		"release-it": "^17.1.1",
+		"simple-git": "^3.24.0",
 		"ts-jest": "^29.1.2",
 		"ts-node": "^10.9.2",
 		"tsup": "^8.0.2",

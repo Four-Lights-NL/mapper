@@ -1,4 +1,4 @@
-name: autofix.ci # needed to securely identify the workflow
+name: Autofix
 
 on:
   pull_request:
@@ -6,16 +6,17 @@ on:
     branches: ['main']
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  autofix:
+  linting-and-formatting:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Prepare
         uses: ./.github/actions/prepare
@@ -26,6 +27,15 @@ jobs:
       - name: Format
         run: npm run format:fix
 
-      - uses: autofix-ci/action@ea32e3a12414e6d3183163c3424a7d7a8631ad84
+      - name: Commit changes
+        uses: actions/github-script@v5
         with:
-          commit-message: 'chore: apply automated fixes'
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const git = require('simple-git')();
+            const changes = await git.diffSummary();
+            if (changes.files.length > 0) {
+              await git.add('./*');
+              await git.commit('chore: apply automated fixes');
+              await git.push();
+            }
