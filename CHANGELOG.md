@@ -1,5 +1,12 @@
 
 
+## [1.3.2](https://github.com/Four-Lights-NL/mapper/compare/v1.3.1...v1.3.2) (2024-05-13)
+
+
+### Bug Fixes
+
+* allow importing utils through subpath ([e7ed394](https://github.com/Four-Lights-NL/mapper/commit/e7ed3942c3178fe403c1a565080d74c8afe2714d))
+
 ## [1.3.1](https://github.com/Four-Lights-NL/mapper/compare/v1.3.0...v1.3.1) (2024-05-13)
 
 
