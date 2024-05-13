@@ -12,8 +12,23 @@
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.mjs",
 			"require": "./dist/index.cjs"
+		},
+		"./utils": {
+			"types": "./dist/lib/utils/index.d.ts",
+			"import": "./dist/lib/utils/index.mjs",
+			"require": "./dist/lib/utils/index.cjs"
 		}
 	},
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/index.d.ts"
+      ],
+      "utils": [
+        "./dist/lib/utils/index.d.ts"
+      ]
+    }
+  },
 	"files": [
 		"dist",
 		"README.md"

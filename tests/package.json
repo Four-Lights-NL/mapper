@@ -1,6 +1,7 @@
 {
 	"name": "tests",
 	"description": "Tests for @fourlights/mapper",
+	"private": true,
 	"scripts": {
 		"setup": "npm install > /dev/null && cd ../ && npm install > /dev/null && npm run build > /dev/null && cd -",
 		"pretest": "npm run setup",
