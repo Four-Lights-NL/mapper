@@ -1,4 +1,4 @@
-import { isPlainObject } from '../../../src/lib/utils/isPlainObject'
+import { isPlainObject } from '@fourlights/mapper/utils'
 
 describe('isPlainObject', () => {
 	it('should return true for plain objects', () => {
