@@ -1,18 +1,15 @@
 {
 	"name": "playground",
 	"description": "Playground for @fourlights/mapper",
-	"main": "dist/index.js",
+	"type": "module",
 	"scripts": {
-		"prestart": "cd ../ && npm install > /dev/null && npm run build > /dev/null && cd -",
-		"start": "tsc && node dist/index.js",
-		"build": "tsc"
+		"start": "tsx watch src/index.ts"
 	},
 	"dependencies": {
-		"@fourlights/mapper": "file:../",
 		"@faker-js/faker": "^8.4.1",
 		"date-fns": "^3.6.0"
 	},
 	"devDependencies": {
-		"typescript": "^5.4.5"
+		"tsx": "^4.10.2"
 	}
 }
