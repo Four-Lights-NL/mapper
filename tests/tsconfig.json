@@ -1,15 +1,12 @@
 {
+	"extends": "../tsconfig.json",
 	"compilerOptions": {
-		"target": "ESNext",
-		"module": "ESNext",
-		"outDir": "dist",
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"moduleResolution": "Node",
-		"resolveJsonModule": true,
-		"allowSyntheticDefaultImports": true,
-		"forceConsistentCasingInFileNames": true,
-		"strict": true
+		"types": ["vitest/globals"],
+		"paths": {
+			"@fourlights/mapper": ["../src/index"],
+			"@fourlights/mapper/utils": ["../src/lib/utils/index"],
+			"@fourlights/mapper/plugins/*": ["../src/lib/plugins/*"]
+		}
 	},
-	"include": ["**/*", "../types/**/*"]
+	"include": [".", "../src", "../types"]
 }
