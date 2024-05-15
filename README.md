@@ -1,14 +1,97 @@
 # @fourlights/mapper
 
-This package provides a set of utilities for mapping data in TypeScript and JavaScript applications.
+This package makes it easy to map from one data-type to another.
+It provides a simple API for structuring your mapping needs and is extendable using plugins.
+
+It's useful for:
+
+- ingesting external APIs and transforming the data to your internal structure
+- exposing a sparse DTO on public APIs
+- anonymizing pii/sensitive data for RBAC or testing (through mapper-plugin-anonymize)
+
+## Usage examples
+
+Mapping to a sparse DTO and computing composite properties.
+
+```typescript
+import { map, pick } from '@fourlights/mapper'
+
+// Some object returned from an API
+const customer = {
+	id: '123567',
+	firstName: 'Jane',
+	lastName: 'Doe',
+	creditCard: {
+		number: '6271701225979642',
+		issuer: 'Cabal',
+		expiryDate: '03/2026',
+		countryCode: 'AR',
+	},
+	email: 'jane.doe@gmail.com',
+}
+
+// The sparse DTO
+const customerDTO = map<typeof customer>(customer, {
+	id: (d) => d.id,
+	fullName: (d) => `${d.firstName} ${d.lastName}`,
+	email: (d) => d.email,
+	creditCard: (d) => pick(d, ['issuer', 'countryCode']), // or omit(d, ['number', 'expiryDate'])
+})
+```
+
+```json5
+// customerDTO
+{
+	id: '1234567',
+	fullName: 'Jane Doe',
+	email: 'jane.doe@gmail.com',
+	creditCard: {
+		issuer: 'Cabal',
+		countryCode: 'AR',
+	},
+}
+```
+
+Mutating nested objects or arrays during mapping
+
+```typescript
+import { map, Flatten, type MapperConfig } from '@fourlights/mapper'
+
+// input
+const page = { status: { private: true, archived: true }, tags: ['cool', 'example'] }
+
+// config
+const config: MapperConfig<typeof page> = {
+	tags: { value: (data) => data.tags, apply: (r) => r.toUpperCase() },
+	is: { value: (data) => data.status, options: { structure: Flatten } },
+	is_not: {
+		value: (data) => data.status,
+		apply: (r) => !r,
+		options: { structure: Flatten },
+	},
+}
+
+// result
+const result = map(page, config)
+```
+
+```json5
+// result
+{
+	tags: ['COOL', 'EXAMPLE'],
+	is_private: true,
+	is_archived: true,
+	is_not_private: false,
+	is_not_archived: false,
+}
+```
 
 ## Features
 
 - Map data using a configuration object
 - Automatically map nested objects and arrays
 - Use plugins to extend functionality
-- Support for TypeScript
-- Fully tested
+- Supports TypeScript, ESM and CJS
 
 ## Table of contents
 
@@ -102,8 +185,8 @@ Which will output:
 Both the [`apply`](https://github.com/Four-Lights-NL/mapper/blob/main/src/lib/map.ts#L3) and [`options.structure`](https://github.com/Four-Lights-NL/mapper/blob/main/src/lib/map.ts#L3) functions receive the following arguments on each iteration:
 
 - `rowValue`: the value of the current row (e.g. `cool`)
-- `parentKey`: the key of the parent holding the iterable value (e.g. `tags`)
-- `rowKey`: the key of the current row (normally the array-index or object property name, e.g. `0` or `private`, but if you supply a `structure` function it will be the result of that function)
+- `outerKey`: the key of the parent holding the iterable value (e.g. `tags`)
+- `innerKey`: the key of the current row (normally the array-index or object property name, e.g. `0` or `private`, but if you supply a `structure` function it will be the result of that function)
 
 ### Options
 
@@ -116,8 +199,8 @@ The [`options`](https://github.com/Four-Lights-NL/mapper/blob/main/src/lib/map.t
 
 Two functions for manipulating structure are provided out of the box:
 
-- [`mapper.Flatten`](https://github.com/Four-Lights-NL/mapper/blob/main/src/lib/functions.ts#L2): flattens the keys of the object or array. This is useful when you want to flatten nested objects or arrays. Uses an underscore as a separator.
-- [`mapper.Keep`](https://github.com/Four-Lights-NL/mapper/blob/main/src/lib/functions.ts#L7): keeps the current structure intact (default)
+- [`mapper.Flatten`](https://github.com/Four-Lights-NL/mapper/blob/main/src/lib/structure.ts#L2): flattens the keys of the object or array. This is useful when you want to flatten nested objects or arrays. Uses an underscore as a separator.
+- [`mapper.Keep`](https://github.com/Four-Lights-NL/mapper/blob/main/src/lib/structure.ts#L7): keeps the current structure intact (default)
 
 ## Plugins
 
@@ -126,9 +209,9 @@ The package also provides a plugin system that allows you to re-use mapper confi
 Example usage:
 
 ```typescript
+import { map, type MapperConfig } from '@fourlights/mapper'
 import {
 	ChangeCasingPlugin,
-	type ChangeCasingPluginOptions,
 	type ChangeCasingPluginPropertyOptions,
 } from '@fourlights/mapper/plugins/changeCasing'
 
@@ -139,7 +222,7 @@ const config: MapperConfig<typeof user> = {
 	age: (data) => differenceInYears(new Date(), data.birthdate),
 }
 
-console.log(mapper.map(user, config, { plugins: [new ChangeCasingPlugin({ casing: 'upper' })] }))
+console.log(map(user, config, { plugins: [new ChangeCasingPlugin({ casing: 'upper' })] }))
 
 // or alternatively you can set the plugin options per property
 const alternativeconfig: MapperConfig<typeof user, ChangeCasingPluginPropertyOptions> = {
@@ -151,7 +234,7 @@ const alternativeconfig: MapperConfig<typeof user, ChangeCasingPluginPropertyOpt
 	age: (data) => differenceInYears(new Date(), data.birthdate),
 }
 
-console.log(mapper.map(user, alternativeconfig, { plugins: [new ChangeCasingPlugin()] }))
+console.log(map(user, alternativeconfig, { plugins: [new ChangeCasingPlugin()] }))
 ```
 
 Which will output:
@@ -174,7 +257,7 @@ While the above is trivial, plugins can be used to implement more complex logic,
 
 ## Other examples
 
-For more examples, please refer to the [tests](tests/unit/map.test.ts) and the [playground](./playground/src/index.ts).
+For more examples, please refer to the [tests](tests/unit) and the [playground](playground/src/index.ts).
 
 ## Contributing
 

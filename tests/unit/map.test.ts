@@ -1,6 +1,4 @@
-import { map } from '../../src/lib/map'
-import { Flatten } from '../../src/lib/structure'
-import type { MapperConfig } from '../../src/lib/types'
+import { Flatten, map, type MapperConfig } from '@fourlights/mapper'
 
 describe('Map', () => {
 	it('should map data', () => {

@@ -1,9 +1,8 @@
-import type { MapperConfig } from '../../../src/lib/types'
-import { map } from '../../../src/lib/map'
+import { map, type MapperConfig } from '@fourlights/mapper'
 import {
 	ChangeCasingPlugin,
 	type ChangeCasingPluginPropertyOptions,
-} from '../../../src/lib/plugins/changeCasing'
+} from '@fourlights/mapper/plugins/changeCasing'
 
 describe('Plugins', () => {
 	it('should use the `ChangeCasingPlugin` when enabled', () => {

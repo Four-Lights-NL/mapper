@@ -1,15 +1,9 @@
 {
+	"extends": "../tsconfig.json",
 	"compilerOptions": {
-		"target": "ESNext",
-		"module": "CommonJS",
-		"outDir": "dist",
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"moduleResolution": "Node",
-		"resolveJsonModule": true,
-		"allowSyntheticDefaultImports": true,
-		"forceConsistentCasingInFileNames": true,
-		"strict": true
+		"paths": {
+			"@fourlights/mapper": ["../src/index"]
+		}
 	},
-	"include": ["src/**/*"]
+	"include": ["./src", "../src", "../types"]
 }

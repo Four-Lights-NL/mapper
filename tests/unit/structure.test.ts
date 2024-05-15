@@ -1,6 +1,4 @@
-import type { MapperConfig } from '../../src/lib/types'
-import { Flatten, Keep } from '../../src/lib/structure'
-import { map } from '../../src/lib/map'
+import { Flatten, Keep, map, type MapperConfig } from '@fourlights/mapper'
 
 describe('Keys', () => {
 	describe('Flatten', () => {
@@ -27,26 +25,26 @@ describe('Keys', () => {
 
 	describe('Keep', () => {
 		// NOTE: This is currently broken in set-value, see https://github.com/jonschlinkert/set-value/issues/35
-		xit('should map an array of numbers to an object', () => {
-			const input = { a: 2, b: 3, c: [2, 3, 4] }
+		// it('should map an array of numbers to an object', () => {
+		// 	const input = { a: 2, b: 3, c: [2, 3, 4] }
 
-			const config: MapperConfig<typeof input> = {
-				objectC: {
-					value: (data) => data.c,
-					apply: (row: number) => row * row,
-					options: {
-						structure: Keep,
-						init: () => {},
-					},
-				},
-			}
+		// 	const config: MapperConfig<typeof input> = {
+		// 		objectC: {
+		// 			value: (data) => data.c,
+		// 			apply: (row: number) => row * row,
+		// 			options: {
+		// 				structure: Keep,
+		// 				init: () => {},
+		// 			},
+		// 		},
+		// 	}
 
-			const expected = {
-				objectC: { 2: 4, 3: 9, 4: 16 },
-			}
+		// 	const expected = {
+		// 		objectC: { 2: 4, 3: 9, 4: 16 },
+		// 	}
 
-			expect(map(input, config)).toEqual(expected)
-		})
+		// 	expect(map(input, config)).toEqual(expected)
+		// })
 
 		it('should map an array of numbers to an array as elements', () => {
 			const input = { a: 2, b: 3, c: [2, 3, 4] }
