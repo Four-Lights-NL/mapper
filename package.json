@@ -2,7 +2,7 @@
 	"name": "@fourlights/mapper",
 	"version": "1.4.0",
 	"description": "A simple data mapper written in typescript",
-	"packageManager": "npm@10.7.0",
+	"packageManager": "npm@10.8.0",
 	"type": "module",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
@@ -62,7 +62,7 @@
 	],
 	"devDependencies": {
 		"@release-it/conventional-changelog": "^8.0.1",
-		"oxlint": "^0.3.4",
+		"oxlint": "^0.3.5",
 		"prettier": "^3.2.5",
 		"release-it": "^17.2.1",
 		"simple-git": "^3.24.0",
