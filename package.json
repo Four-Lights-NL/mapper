@@ -2,7 +2,7 @@
 	"name": "@fourlights/mapper",
 	"version": "1.4.0",
 	"description": "A simple data mapper written in typescript",
-	"packageManager": "npm@10.8.1",
+	"packageManager": "npm@11.0.0",
 	"type": "module",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
