@@ -7,7 +7,7 @@
 	},
 	"dependencies": {
 		"@faker-js/faker": "^8.4.1",
-		"date-fns": "^3.6.0"
+		"date-fns": "^4.1.0"
 	},
 	"devDependencies": {
 		"tsx": "^4.13.2"
